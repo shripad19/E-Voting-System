@@ -1,0 +1,123 @@
+body{
+    overflow: hidden;
+    padding: 0px;
+    margin: 0px;
+}
+.admin {
+    text-align: center; 
+    margin: 2rem auto;
+    margin-top: 0%;
+}
+.tempback{
+    margin: 0px 10px 2px 12px;
+}
+.backIcons{
+    margin: 10px 100px 10px 15px; 
+}
+.headingExpert{
+    margin-left: 0px;
+    margin-bottom: 1px;
+    padding: 0px;
+}
+.admin-header {
+    height: 13vh;
+    width: 100vw;
+    background-color: #87CEEB;
+    border-bottom: 2px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow-x: hidden;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+
+.logoBlock {
+    width: 50px;
+    height: 50px;
+}
+
+.logoBlock img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.logoText {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-left: 1rem;
+}
+
+.admin-options {
+    width: 60%;
+    margin: 5% auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(145deg, #e6e8eb, #ffffff);
+}
+
+.imageContainer {
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    width: 45%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.responsiveImage {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.imageContainer:hover .responsiveImage {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.imageText {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #285d66;
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .admin-options {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .responsiveImage {
+        width: 100px;
+        height: 100px;
+    }
+
+    .logoText {
+        font-size: 1.2rem;
+    }
+
+    .imageContainer {
+        width: 80%;
+    }
+}
+
+

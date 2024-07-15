@@ -1,0 +1,60 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  
+  .expertNavbar {
+    background-color: #f8f9fa;
+  padding: 1rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  }
+  .submitFormBlock{
+    margin-top: 4rem; /* Adjust this value to match the height of your navbar */
+  padding: 1rem;
+  height: calc(100vh - 4rem); /* Adjust this value to match the height of your navbar */
+  overflow-y: auto;
+  background-color: white;
+  }
+  .formheader{
+    background-color: white;
+    height: 10vh;
+    border-bottom: rgb(240, 243, 243);
+    overflow: auto;
+  }
+  
+  .headingForm{
+    text-align: center;
+    cursor: pointer;
+    color: rgb(124, 122, 122);
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 2rem;
+  }
+  .headingExpert i {
+    font-size: 2.5rem; /* Increased size of back arrow */
+    cursor: pointer;
+  }
+  .backIcon{
+    font-size: 30px;
+    margin-left: 5%;
+    margin-top: 1%;
+    color: rgb(13, 13, 13);
+  }
+  .cropSubmitForm{
+    width:50%;
+    margin:auto;
+    background-color: #f8f9fa;
+    padding: 2rem;
+    box-sizing: border-box; /* Includes padding in the width and height */
+    border-radius: 0.5rem;
+  }
+  .submitLink{
+    text-decoration: none;
+    color: white;
+    
+  }
