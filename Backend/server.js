@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 const port = 5000;
 
-mongoose.connect("mongodb://localhost:27017/eVotingdb", {
+mongoose.connect(process.env.DATABASE_URL, {
 }).then(() => {
     console.log("Connected to database");
 }).catch((err) => {
