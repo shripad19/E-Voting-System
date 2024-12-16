@@ -140,7 +140,7 @@ app.post("/check-admin", async (req, res) => {
                 from: process.env.EMAIL_USER,
                 to: decrypt(admin.email, ENCRYPTION_KEY), // Assuming email is stored in the database
                 subject: "Verification OTP for E-Voting",
-                text: `Your OTP for verification is ${otp}. It is valid for 10 minutes.`,
+                text: `Your OTP for verification is ${otp}. Please use it to complete your verification process.`,
             };
 
             transporter.sendMail(mailOptions, (error, info) => {
@@ -231,7 +231,7 @@ app.post("/check-voter", async (req, res) => {
                 from: process.env.EMAIL_USER,
                 to: decrypt(voter.email, ENCRYPTION_KEY), // Decrypt email to send OTP
                 subject: "Verification OTP for e-Voting",
-                text: `Your OTP for verification is ${otp}. It is valid for 10 minutes.`,
+                text: `Your OTP for verification is ${otp}. Please use it to complete your verification process.`,
             };
 
             transporter.sendMail(mailOptions, (error, info) => {
