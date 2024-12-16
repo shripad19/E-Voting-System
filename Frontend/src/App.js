@@ -18,7 +18,7 @@ const App = () => {
     <Router>
       <VerificationProvider>
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route exact path="/" element={<Home  />} />
           <Route path="/verify-admin" element={<VerifyAdmin />} />
           
           {/* Admin Routes */}

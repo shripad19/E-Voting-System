@@ -17,7 +17,7 @@ export default function Voter() {
     e.preventDefault();
     navigate("/");
   }
-
+ 
   useEffect(() => {
     if (status === "not_registered" || status === "already") {
       const timer = setTimeout(() => {
@@ -93,7 +93,7 @@ export default function Voter() {
           {status === "not_registered" && <AlertVoterNotRegistered />}
           {status === "otp_invalid" && <AlertOtpInvalid />}
           {status === "already" && <AlertVoteCasted />}
-        </div>
+        </div> 
 
         {step === 1 && (
           <form className="cropSubmitForm" onSubmit={onCheckVoterId}>

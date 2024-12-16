@@ -8,13 +8,14 @@ export default function ScheduleElection() {
   const [state, setState] = useState("");
   const [assemblyForElection, setAssemblyForElection] = useState("");
   const [status, setStatus] = useState("");
-  const [candidates, setCandidates] = useState([{ name: "", party: "" }]);
+  const [candidates, setCandidates] = useState([{ name: "", party: "", symbol: null }]);
 
   const navigate = useNavigate();
-  let returnHome = async (e) => {
+
+  const returnHome = (e) => {
     e.preventDefault();
     navigate("/admin");
-  }
+  };
 
   useEffect(() => {
     if (status === "ok") {
@@ -25,31 +26,48 @@ export default function ScheduleElection() {
     }
   }, [status, navigate]);
 
-  const handleCandidateChange = (index, field, value) => {//to handle changes to the properties of a specific candidate in a list of candidates
+  const handleCandidateChange = (index, field, value) => {
     const updatedCandidates = candidates.map((candidate, i) =>
       i === index ? { ...candidate, [field]: value } : candidate
     );
     setCandidates(updatedCandidates);
-  }
+  };
+
+  const handleFileChange = (index, file) => {
+    const updatedCandidates = candidates.map((candidate, i) =>
+      i === index ? { ...candidate, symbol: file } : candidate
+    );
+    setCandidates(updatedCandidates);
+  };
 
   const addCandidate = () => {
-    setCandidates([...candidates, { name: "", party: "" }]);//The spread operator is used to create a new array that includes all the elements of the existing candidates array.
-  }
+    setCandidates([...candidates, { name: "", party: "", symbol: null }]);
+  };
 
-  let onHandleSubmit = async (e) => {
+  const onHandleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("state", state);
+    formData.append("assemblyForElection", assemblyForElection);
+    formData.append("candidatesData", JSON.stringify(candidates)); // Send candidates as JSON
+    // Attach candidate data, including their symbol images
+    candidates.forEach((candidate, index) => {
+      if (candidate.symbol) {
+        formData.append("symbols", candidate.symbol); // Match the multer array field
+      }
+    });
+    
+
     try {
       const response = await fetch('http://localhost:5000/schedule-election', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ state, assemblyForElection, candidates }),
+        body: formData,
       });
       const data = await response.json();
       setStatus(data.status);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error scheduling election:", error.stack); // Use error.stack for full details
+      res.status(500).json({ status: "error", message: "Failed to schedule election." });
     }
   };
 
@@ -73,7 +91,7 @@ export default function ScheduleElection() {
           {status === "ok" && <AlertSuccess />}
         </div>
 
-        <form className="cropSubmitForm" autoComplete="off">
+        <form className="cropSubmitForm" autoComplete="off" onSubmit={onHandleSubmit}>
           <div className="mb-3">
             <label htmlFor="state" className="form-label">State</label>
             <input
@@ -99,9 +117,6 @@ export default function ScheduleElection() {
             />
           </div>
 
-          {/* Below code maps over a list of candidates and renders a form for each candidate.  */}
-          {/* The candidates array is mapped over, meaning that for each candidate in the array, the code inside the map function is executed.
-          The map function takes two parameters: candidate (the current candidate object) and index (the current index of the candidate in the array). */}
           {candidates.map((candidate, index) => (
             <div key={index} className="candidateForm">
               <div className="mb-3">
@@ -128,12 +143,22 @@ export default function ScheduleElection() {
                   autoComplete="off"
                 />
               </div>
+              <div className="mb-3">
+                <label htmlFor={`candidateSymbol-${index}`} className="form-label">Party Symbol</label>
+                <input
+                  type="file"
+                  className="form-control"
+                  id={`candidateSymbol-${index}`}
+                  onChange={(e) => handleFileChange(index, e.target.files[0])}
+                />
+              </div>
             </div>
           ))}
+
           <button type="button" className="btn btn-secondary" onClick={addCandidate}>
             Add Candidate
           </button>
-          <button onClick={onHandleSubmit} type="submit" className="btn btn-primary">Submit</button>
+          <button type="submit" className="btn btn-primary">Submit</button>
         </form>
       </div>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossOrigin="anonymous"></script>

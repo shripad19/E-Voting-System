@@ -156,3 +156,21 @@ body {
     margin-top: 1rem;
   }
   
+
+
+
+
+  .candidateDetails {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .partySymbol {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  

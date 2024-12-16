@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import '@fortawesome/fontawesome-free/css/all.css';
-import "../css/ScheduleElection.css";
 import Alert, { AlertCastedVote } from "./Alert"; // Ensure this is correctly imported
 import "../css/CasteVote.css";
 
@@ -14,6 +13,7 @@ export default function CasteVote() {
     const [candidates, setCandidates] = useState([]);
     const [selectedCandidate, setSelectedCandidate] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    console.log(`voter id from cast-vote ${voterId}`);
 
     const navigate = useNavigate();
 
@@ -204,11 +204,21 @@ export default function CasteVote() {
                                         value={candidate.name}
                                         onChange={() => handleCandidateSelect(candidate.name)}
                                     />
-                                    <label htmlFor={`candidate-${index}`}>{candidate.name} ({candidate.party})</label>
+                                    <label htmlFor={`candidate-${index}`}>
+                                        <div className="candidateDetails">
+                                            <img
+                                                src={`http://localhost:5000/${candidate.symbol}`}
+                                                alt={`${candidate.party} symbol`}
+                                                className="partySymbol"
+                                            />
+                                            <span>{candidate.name} ({candidate.party})</span>
+                                        </div>
+                                    </label>
                                 </div>
                             ))}
                         </div>
                     )}
+
                     <button onClick={onHandleSubmit} type="submit" className="btn btn-primary cast-btn">Submit</button>
                 </form>
             </div>

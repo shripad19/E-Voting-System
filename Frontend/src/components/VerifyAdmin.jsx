@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import '@fortawesome/fontawesome-free/css/all.css';
-import "../css/ScheduleElection.css";
+import "../css/VerifyAdmin.css";
 import Alert, { AlertOtpSent, AlertOtpInvalid, AlertAdminNotRegistered, AlertVoteCasted, AlertLogin } from "./Alert";
 import { useVerification } from "../VerificationContext";
 
