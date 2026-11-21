@@ -6,7 +6,7 @@ import Alert, { AlertOtpSent, AlertOtpInvalid, AlertAdminNotRegistered, AlertVot
 import { useVerification } from "../VerificationContext";
 
 export default function VerifyAdmin() {
-  const [adminId, setAdminId] = useState('');
+  const [adminId, setAdminId] = useState(''); 
   const [otp, setOtp] = useState('');
   const [status, setStatus] = useState('');
   const [step, setStep] = useState(1);
